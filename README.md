@@ -33,6 +33,20 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
+Add a package reference to Microsoft.AspNetCore.Identity.UI to the Web project (.csproj) file. Run the following command in the App.Webproject directory:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.Identity.UI
+dotnet restore
+```
+
+Add the identity package to the App.Infrastructure project.
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+```
+
+
+
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
