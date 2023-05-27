@@ -4,11 +4,11 @@ using App.SharedKernel;
 
 namespace App.Core.ProjectAggregate;
 
-public class ToDoItem : EntityBase
+public class ToDoItem : EntityBase<string>
 {
   public string Title { get; set; } = string.Empty;
   public string Description { get; set; } = string.Empty;
-  public int? ContributorId { get; private set; }
+  public string? ContributorId { get; private set; }
   public bool IsDone { get; private set; }
 
   public void MarkComplete()
@@ -21,7 +21,7 @@ public class ToDoItem : EntityBase
     }
   }
 
-  public void AddContributor(int contributorId)
+  public void AddContributor(string contributorId)
   {
     Guard.Against.Null(contributorId, nameof(contributorId));
     ContributorId = contributorId;

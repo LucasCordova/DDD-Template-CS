@@ -32,15 +32,15 @@ public class ListIncomplete : EndpointBaseAsync
       return BadRequest();
     }
 
-    var response = new ListIncompleteResponse(0, new List<ToDoItemRecord>());
-    var result = await _searchService.GetAllIncompleteItemsAsync(request.ProjectId, request.SearchString);
+    var response = new ListIncompleteResponse("0", new List<ToDoItemRecord>());
+    var result = await _searchService.GetAllIncompleteItemsAsync(request.ProjectId!, request.SearchString);
 
     if (result.Status == Ardalis.Result.ResultStatus.Ok)
     {
-      response.ProjectId = request.ProjectId;
+      response.ProjectId = request.ProjectId!;
       response.IncompleteItems = new List<ToDoItemRecord>(
         result.Value.Select(
-          item => new ToDoItemRecord(item.Id,
+          item => new ToDoItemRecord(item.Id!,
             item.Title,
             item.Description,
             item.IsDone)));

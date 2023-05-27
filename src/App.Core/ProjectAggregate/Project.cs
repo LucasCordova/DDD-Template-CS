@@ -5,7 +5,7 @@ using App.SharedKernel.Interfaces;
 
 namespace App.Core.ProjectAggregate;
 
-public class Project : EntityBase, IAggregateRoot
+public class Project : EntityBase<string>, IAggregateRoot
 {
   public string Name { get; private set; }
 

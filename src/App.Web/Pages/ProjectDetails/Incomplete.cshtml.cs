@@ -11,7 +11,7 @@ public class IncompleteModel : PageModel
   private readonly IRepository<Project> _repository;
 
   [BindProperty(SupportsGet = true)]
-  public int ProjectId { get; set; }
+  public string? ProjectId { get; set; }
 
   public List<ToDoItem>? ToDoItems { get; set; }
 
@@ -22,7 +22,7 @@ public class IncompleteModel : PageModel
 
   public async Task OnGetAsync()
   {
-    var projectSpec = new ProjectByIdWithItemsSpec(ProjectId);
+    var projectSpec = new ProjectByIdWithItemsSpec(ProjectId!);
     var project = await _repository.FirstOrDefaultAsync(projectSpec);
     if (project == null)
     {
