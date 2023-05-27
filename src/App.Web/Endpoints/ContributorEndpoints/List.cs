@@ -26,7 +26,7 @@ public class List : EndpointWithoutRequest<ContributorListResponse>
     var response = new ContributorListResponse()
     {
       Contributors = contributors
-        .Select(project => new ContributorRecord(project.Id!, project.Name))
+        .Select(project => new ContributorRecord(project.Id, project.Name))
         .ToList()
     };
 

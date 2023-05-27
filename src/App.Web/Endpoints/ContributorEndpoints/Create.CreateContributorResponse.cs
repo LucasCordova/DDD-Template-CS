@@ -2,11 +2,11 @@ namespace App.Web.Endpoints.ContributorEndpoints;
 
 public class CreateContributorResponse
 {
-  public CreateContributorResponse(string id, string name)
+  public CreateContributorResponse(int id, string name)
   {
     Id = id;
     Name = name;
   }
-  public string Id { get; set; }
+  public int Id { get; set; }
   public string Name { get; set; }
 }

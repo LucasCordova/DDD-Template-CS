@@ -4,7 +4,7 @@ using App.SharedKernel.Interfaces;
 
 namespace App.Core.ContributorAggregate;
 
-public class Contributor : EntityBase<string>, IAggregateRoot
+public class Contributor : EntityBase, IAggregateRoot
 {
   public string Name { get; private set; }
 

@@ -31,7 +31,7 @@ public class List : EndpointBaseAsync
     var response = new ProjectListResponse
     {
       Projects = projects
-        .Select(project => new ProjectRecord(project.Id!, project.Name))
+        .Select(project => new ProjectRecord(project.Id, project.Name))
         .ToList()
     };
 

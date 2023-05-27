@@ -37,7 +37,7 @@ public class Create : EndpointBaseAsync
     var createdItem = await _repository.AddAsync(newProject, cancellationToken);
     var response = new CreateProjectResponse
     (
-      id: createdItem.Id!,
+      id: createdItem.Id,
       name: createdItem.Name
     );
 

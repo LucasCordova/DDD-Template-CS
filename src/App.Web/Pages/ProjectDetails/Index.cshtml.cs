@@ -12,7 +12,7 @@ public class IndexModel : PageModel
   private readonly IRepository<Project> _repository;
 
   [BindProperty(SupportsGet = true)]
-  public string? ProjectId { get; set; }
+  public int ProjectId { get; set; }
 
   public string Message { get; set; } = "";
 
@@ -25,7 +25,7 @@ public class IndexModel : PageModel
 
   public async Task OnGetAsync()
   {
-    var projectSpec = new ProjectByIdWithItemsSpec(ProjectId!);
+    var projectSpec = new ProjectByIdWithItemsSpec(ProjectId);
     var project = await _repository.FirstOrDefaultAsync(projectSpec);
     if (project == null)
     {
@@ -36,7 +36,7 @@ public class IndexModel : PageModel
 
     Project = new ProjectDTO
     (
-        id: project.Id!,
+        id: project.Id,
         name: project.Name,
         items: project.Items
         .Select(item => ToDoItemDTO.FromToDoItem(item))

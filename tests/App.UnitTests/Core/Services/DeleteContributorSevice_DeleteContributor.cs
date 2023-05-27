@@ -21,7 +21,7 @@ namespace App.UnitTests.Core.Services
         [Fact]
         public async Task ReturnsNotFoundGivenCantFindContributor()
         {
-            var result = await _service.DeleteContributor("0");
+            var result = await _service.DeleteContributor(0);
 
             Assert.Equal(Ardalis.Result.ResultStatus.NotFound, result.Status);
         }

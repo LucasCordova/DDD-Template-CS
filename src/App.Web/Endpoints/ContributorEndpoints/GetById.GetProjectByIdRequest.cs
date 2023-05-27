@@ -3,7 +3,7 @@
 public class GetContributorByIdRequest
 {
   public const string Route = "/Contributors/{ContributorId:int}";
-  public static string BuildRoute(string contributorId) => Route.Replace("{ContributorId:string}", contributorId);
+  public static string BuildRoute(int contributorId) => Route.Replace("{ContributorId:int}", contributorId.ToString());
 
-  public string? ContributorId { get; set; }
+  public int ContributorId { get; set; }
 }

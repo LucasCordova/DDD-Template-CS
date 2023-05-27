@@ -4,9 +4,9 @@ namespace App.Core.ContributorAggregate.Events;
 
 public class ContributorDeletedEvent : DomainEventBase
 {
-  public string ContributorId { get; set; }
+  public int ContributorId { get; set; }
 
-  public ContributorDeletedEvent(string contributorId)
+  public ContributorDeletedEvent(int contributorId)
   {
     ContributorId = contributorId;
   }

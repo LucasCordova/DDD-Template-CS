@@ -4,10 +4,10 @@ namespace App.Core.ProjectAggregate.Events;
 
 public class ContributorAddedToItemEvent : DomainEventBase
 {
-  public string ContributorId { get; set; }
+  public int ContributorId { get; set; }
   public ToDoItem Item { get; set; }
 
-  public ContributorAddedToItemEvent(ToDoItem item, string contributorId)
+  public ContributorAddedToItemEvent(ToDoItem item, int contributorId)
   {
     Item = item;
     ContributorId = contributorId;

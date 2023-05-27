@@ -26,7 +26,7 @@ public class ProjectsController : BaseApiController
     var projectDTOs = (await _repository.ListAsync())
         .Select(project => new ProjectDTO
         (
-            id: project.Id!,
+            id: project.Id,
             name: project.Name
         ))
         .ToList();
@@ -36,7 +36,7 @@ public class ProjectsController : BaseApiController
 
   // GET: api/Projects
   [HttpGet("{id:int}")]
-  public async Task<IActionResult> GetById(string id)
+  public async Task<IActionResult> GetById(int id)
   {
     var projectSpec = new ProjectByIdWithItemsSpec(id);
     var project = await _repository.FirstOrDefaultAsync(projectSpec);
@@ -47,7 +47,7 @@ public class ProjectsController : BaseApiController
 
     var result = new ProjectDTO
     (
-        id: project.Id!,
+        id: project.Id,
         name: project.Name,
         items: new List<ToDoItemDTO>
         (
@@ -68,7 +68,7 @@ public class ProjectsController : BaseApiController
 
     var result = new ProjectDTO
     (
-        id: createdProject.Id!,
+        id: createdProject.Id,
         name: createdProject.Name
     );
     return Ok(result);
@@ -76,7 +76,7 @@ public class ProjectsController : BaseApiController
 
   // PATCH: api/Projects/{projectId}/complete/{itemId}
   [HttpPatch("{projectId:int}/complete/{itemId}")]
-  public async Task<IActionResult> Complete(string projectId, string itemId)
+  public async Task<IActionResult> Complete(int projectId, int itemId)
   {
     var projectSpec = new ProjectByIdWithItemsSpec(projectId);
     var project = await _repository.FirstOrDefaultAsync(projectSpec);

@@ -44,7 +44,7 @@ public class Update : EndpointBaseAsync
     await _repository.UpdateAsync(existingProject, cancellationToken);
 
     var response = new UpdateProjectResponse(
-        project: new ProjectRecord(existingProject.Id!, existingProject.Name)
+        project: new ProjectRecord(existingProject.Id, existingProject.Name)
     );
 
     return Ok(response);

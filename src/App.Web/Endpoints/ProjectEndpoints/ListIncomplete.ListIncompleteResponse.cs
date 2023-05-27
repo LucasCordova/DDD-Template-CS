@@ -2,11 +2,11 @@
 
 public class ListIncompleteResponse
 {
-  public ListIncompleteResponse(string projectId, List<ToDoItemRecord> incompleteItems)
+  public ListIncompleteResponse(int projectId, List<ToDoItemRecord> incompleteItems)
   {
     ProjectId = projectId;
     IncompleteItems = incompleteItems;
   }
-  public string ProjectId { get; set; }
+  public int ProjectId { get; set; }
   public List<ToDoItemRecord> IncompleteItems { get; set; }
 }

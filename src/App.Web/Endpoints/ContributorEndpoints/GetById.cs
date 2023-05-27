@@ -24,7 +24,7 @@ public class GetById : Endpoint<GetContributorByIdRequest, ContributorRecord>
   public override async Task HandleAsync(GetContributorByIdRequest request, 
     CancellationToken cancellationToken)
   {
-    var spec = new ContributorByIdSpec(request.ContributorId!);
+    var spec = new ContributorByIdSpec(request.ContributorId);
     var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
@@ -32,7 +32,7 @@ public class GetById : Endpoint<GetContributorByIdRequest, ContributorRecord>
       return;
     }
 
-    var response = new ContributorRecord(entity.Id!, entity.Name);
+    var response = new ContributorRecord(entity.Id, entity.Name);
 
     await SendAsync(response, cancellation: cancellationToken);
   }

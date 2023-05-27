@@ -4,5 +4,5 @@ namespace App.Core.Interfaces;
 
 public interface IDeleteContributorService
 {
-    public Task<Result> DeleteContributor(string contributorId);
+    public Task<Result> DeleteContributor(int contributorId);
 }
