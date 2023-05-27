@@ -41,7 +41,7 @@ public class Update : Endpoint<UpdateContributorRequest, UpdateContributorRespon
     await _repository.UpdateAsync(existingContributor, cancellationToken);
 
     var response = new UpdateContributorResponse(
-        contributor: new ContributorRecord(existingContributor.Id, existingContributor.Name)
+        contributor: new ContributorRecord(existingContributor.Id!, existingContributor.Name)
     );
 
     await SendAsync(response, cancellation: cancellationToken);

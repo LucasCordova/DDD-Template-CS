@@ -29,7 +29,7 @@ public class GetById : EndpointBaseAsync
     [FromRoute] GetProjectByIdRequest request,
     CancellationToken cancellationToken = new())
   {
-    var spec = new ProjectByIdWithItemsSpec(request.ProjectId);
+    var spec = new ProjectByIdWithItemsSpec(request.ProjectId!);
     var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
@@ -38,9 +38,9 @@ public class GetById : EndpointBaseAsync
 
     var response = new GetProjectByIdResponse
     (
-      id: entity.Id,
+      id: entity.Id!,
       name: entity.Name,
-      items: entity.Items.Select(item => new ToDoItemRecord(item.Id, item.Title, item.Description, item.IsDone))
+      items: entity.Items.Select(item => new ToDoItemRecord(item.Id!, item.Title, item.Description, item.IsDone))
         .ToList()
     );
 

@@ -33,7 +33,7 @@ public class Create : Endpoint<CreateContributorRequest, CreateContributorRespon
     var createdItem = await _repository.AddAsync(newContributor, cancellationToken);
     var response = new CreateContributorResponse
     (
-      id: createdItem.Id,
+      id: createdItem.Id!,
       name: createdItem.Name
     );
 

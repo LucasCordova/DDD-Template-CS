@@ -63,9 +63,9 @@ public static class SeedData
 
     dbContext.SaveChanges();
 
-    ToDoItem1.AddContributor(Contributor1.Id);
-    ToDoItem2.AddContributor(Contributor2.Id);
-    ToDoItem3.AddContributor(Contributor1.Id);
+    ToDoItem1.AddContributor(Contributor1.Id!);
+    ToDoItem2.AddContributor(Contributor2.Id!);
+    ToDoItem3.AddContributor(Contributor1.Id!);
 
     TestProject1.AddItem(ToDoItem1);
     TestProject1.AddItem(ToDoItem2);

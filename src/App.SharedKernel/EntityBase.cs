@@ -3,9 +3,9 @@
 namespace App.SharedKernel;
 
 // This can be modified to EntityBase<TId> to support multiple key types (e.g. Guid)
-public abstract class EntityBase
+public abstract class EntityBase<TId>
 {
-  public int Id { get; set; }
+  public TId? Id { get; set; }
 
   private List<DomainEventBase> _domainEvents = new ();
   [NotMapped]

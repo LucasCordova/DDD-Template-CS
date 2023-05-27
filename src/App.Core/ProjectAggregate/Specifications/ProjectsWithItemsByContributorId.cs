@@ -4,7 +4,7 @@ namespace App.Core.ProjectAggregate.Specifications;
 
 public class ProjectsWithItemsByContributorIdSpec : Specification<Project>, ISingleResultSpecification
 {
-  public ProjectsWithItemsByContributorIdSpec(int contributorId)
+  public ProjectsWithItemsByContributorIdSpec(string contributorId)
   {
     Query
         .Where(project => project.Items.Any(item => item.ContributorId == contributorId))
