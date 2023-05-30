@@ -1,9 +1,9 @@
-﻿using App.Core.ContributorAggregate.Events;
+﻿using App.Core.Entities.ContributorAggregate.Events;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
-using App.Core.ProjectAggregate.Specifications;
 using MediatR;
 
-namespace App.Core.ProjectAggregate.Handlers;
+namespace App.Core.Entities.ProjectAggregate.Handlers;
 
 public class ContributorDeletedHandler : INotificationHandler<ContributorDeletedEvent>
 {

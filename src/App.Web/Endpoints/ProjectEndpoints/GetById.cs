@@ -1,15 +1,13 @@
-﻿using Ardalis.ApiEndpoints;
-using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Specifications;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
+using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace App.Web.Endpoints.ProjectEndpoints;
 
-public class GetById : EndpointBaseAsync
-  .WithRequest<GetProjectByIdRequest>
-  .WithActionResult<GetProjectByIdResponse>
+public class GetById : EndpointBaseAsync.WithRequest<GetProjectByIdRequest>.WithActionResult<GetProjectByIdResponse>
 {
   private readonly IRepository<Project> _repository;
 
@@ -38,9 +36,9 @@ public class GetById : EndpointBaseAsync
 
     var response = new GetProjectByIdResponse
     (
-      id: entity.Id,
-      name: entity.Name,
-      items: entity.Items.Select(item => new ToDoItemRecord(item.Id, item.Title, item.Description, item.IsDone))
+      entity.Id,
+      entity.Name,
+      entity.Items.Select(item => new ToDoItemRecord(item.Id, item.Title, item.Description, item.IsDone))
         .ToList()
     );
 

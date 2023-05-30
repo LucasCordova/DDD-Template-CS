@@ -1,5 +1,5 @@
-﻿using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Specifications;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
 using App.Web.ApiModels;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +11,16 @@ public class IndexModel : PageModel
 {
   private readonly IRepository<Project> _repository;
 
-  [BindProperty(SupportsGet = true)]
-  public int ProjectId { get; set; }
-
-  public string Message { get; set; } = "";
-
-  public ProjectDTO? Project { get; set; }
-
   public IndexModel(IRepository<Project> repository)
   {
     _repository = repository;
   }
+
+  [BindProperty(SupportsGet = true)] public int ProjectId { get; set; }
+
+  public string Message { get; set; } = "";
+
+  public ProjectDTO? Project { get; set; }
 
   public async Task OnGetAsync()
   {
@@ -36,9 +35,9 @@ public class IndexModel : PageModel
 
     Project = new ProjectDTO
     (
-        id: project.Id,
-        name: project.Name,
-        items: project.Items
+      project.Id,
+      project.Name,
+      project.Items
         .Select(item => ToDoItemDTO.FromToDoItem(item))
         .ToList()
     );

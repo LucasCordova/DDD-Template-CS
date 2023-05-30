@@ -1,5 +1,5 @@
-﻿using App.Core.ContributorAggregate;
-using App.Core.ProjectAggregate.Specifications;
+﻿using App.Core.Entities.ContributorAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
 using FastEndpoints;
 
@@ -21,7 +21,8 @@ public class GetById : Endpoint<GetContributorByIdRequest, ContributorRecord>
     Options(x => x
       .WithTags("ContributorEndpoints"));
   }
-  public override async Task HandleAsync(GetContributorByIdRequest request, 
+
+  public override async Task HandleAsync(GetContributorByIdRequest request,
     CancellationToken cancellationToken)
   {
     var spec = new ContributorByIdSpec(request.ContributorId);

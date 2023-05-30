@@ -1,14 +1,12 @@
-﻿using Ardalis.ApiEndpoints;
-using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
 using App.SharedKernel.Interfaces;
+using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace App.Web.Endpoints.ProjectEndpoints;
 
-public class Update : EndpointBaseAsync
-    .WithRequest<UpdateProjectRequest>
-    .WithActionResult<UpdateProjectResponse>
+public class Update : EndpointBaseAsync.WithRequest<UpdateProjectRequest>.WithActionResult<UpdateProjectResponse>
 {
   private readonly IRepository<Project> _repository;
 
@@ -19,14 +17,14 @@ public class Update : EndpointBaseAsync
 
   [HttpPut(UpdateProjectRequest.Route)]
   [SwaggerOperation(
-      Summary = "Updates a Project",
-      Description = "Updates a Project with a longer description",
-      OperationId = "Projects.Update",
-      Tags = new[] { "ProjectEndpoints" })
+    Summary = "Updates a Project",
+    Description = "Updates a Project with a longer description",
+    OperationId = "Projects.Update",
+    Tags = new[] { "ProjectEndpoints" })
   ]
   public override async Task<ActionResult<UpdateProjectResponse>> HandleAsync(
     UpdateProjectRequest request,
-      CancellationToken cancellationToken = new ())
+    CancellationToken cancellationToken = new())
   {
     if (request.Name == null)
     {
@@ -44,7 +42,7 @@ public class Update : EndpointBaseAsync
     await _repository.UpdateAsync(existingProject, cancellationToken);
 
     var response = new UpdateProjectResponse(
-        project: new ProjectRecord(existingProject.Id, existingProject.Name)
+      new ProjectRecord(existingProject.Id, existingProject.Name)
     );
 
     return Ok(response);

@@ -1,13 +1,13 @@
 ﻿using App.SharedKernel;
 
-namespace App.Core.ContributorAggregate.Events;
+namespace App.Core.Entities.ContributorAggregate.Events;
 
 public class ContributorDeletedEvent : DomainEventBase
 {
-  public int ContributorId { get; set; }
-
   public ContributorDeletedEvent(int contributorId)
   {
     ContributorId = contributorId;
   }
+
+  public int ContributorId { get; set; }
 }

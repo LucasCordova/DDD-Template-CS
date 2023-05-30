@@ -1,5 +1,5 @@
-﻿using Ardalis.Result;
-using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
+using Ardalis.Result;
 
 namespace App.Core.Interfaces;
 

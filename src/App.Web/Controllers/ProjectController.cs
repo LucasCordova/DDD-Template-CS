@@ -1,5 +1,5 @@
-﻿using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Specifications;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
 using App.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -32,8 +32,8 @@ public class ProjectController : Controller
       Id = project.Id,
       Name = project.Name,
       Items = project.Items
-                    .Select(item => ToDoItemViewModel.FromToDoItem(item))
-                    .ToList()
+        .Select(item => ToDoItemViewModel.FromToDoItem(item))
+        .ToList()
     };
     return View(dto);
   }

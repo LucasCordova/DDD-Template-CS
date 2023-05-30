@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using App.Core.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate;
 
 namespace App.Web.ApiModels;
 
@@ -7,19 +7,14 @@ namespace App.Web.ApiModels;
 public class ToDoItemDTO
 {
   public int Id { get; set; }
-  [Required]
-  public string? Title { get; set; }
+
+  [Required] public string? Title { get; set; }
+
   public string? Description { get; set; }
   public bool IsDone { get; private set; }
 
   public static ToDoItemDTO FromToDoItem(ToDoItem item)
   {
-    return new ToDoItemDTO()
-    {
-      Id = item.Id,
-      Title = item.Title,
-      Description = item.Description,
-      IsDone = item.IsDone
-    };
+    return new ToDoItemDTO { Id = item.Id, Title = item.Title, Description = item.Description, IsDone = item.IsDone };
   }
 }

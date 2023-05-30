@@ -1,4 +1,4 @@
-﻿using App.Core.ProjectAggregate.Events;
+﻿using App.Core.Entities.ProjectAggregate.Events;
 using Xunit;
 
 namespace App.UnitTests.Core.ProjectAggregate;
@@ -9,9 +9,9 @@ public class ToDoItemMarkComplete
   public void SetsIsDoneToTrue()
   {
     var item = new ToDoItemBuilder()
-        .WithDefaultValues()
-        .Description("")
-        .Build();
+      .WithDefaultValues()
+      .Description("")
+      .Build();
 
     item.MarkComplete();
 

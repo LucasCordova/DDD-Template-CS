@@ -1,4 +1,4 @@
-﻿namespace App.Core.ProjectAggregate;
+﻿namespace App.Core.Entities.ProjectAggregate;
 
 public enum ProjectStatus
 {

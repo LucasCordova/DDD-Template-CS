@@ -1,9 +1,9 @@
-﻿using Ardalis.GuardClauses;
+﻿using App.Core.Entities.ProjectAggregate.Events;
 using App.Core.Interfaces;
-using App.Core.ProjectAggregate.Events;
+using Ardalis.GuardClauses;
 using MediatR;
 
-namespace App.Core.ProjectAggregate.Handlers;
+namespace App.Core.Entities.ProjectAggregate.Handlers;
 
 public class ItemCompletedEmailNotificationHandler : INotificationHandler<ToDoItemCompletedEvent>
 {
@@ -21,6 +21,7 @@ public class ItemCompletedEmailNotificationHandler : INotificationHandler<ToDoIt
   {
     Guard.Against.Null(domainEvent, nameof(domainEvent));
 
-    return _emailSender.SendEmailAsync("test@test.com", "test@test.com", $"{domainEvent.CompletedItem.Title} was completed.", domainEvent.CompletedItem.ToString());
+    return _emailSender.SendEmailAsync("test@test.com", "test@test.com",
+      $"{domainEvent.CompletedItem.Title} was completed.", domainEvent.CompletedItem.ToString());
   }
 }

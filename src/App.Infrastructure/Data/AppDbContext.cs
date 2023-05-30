@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using App.Core.ContributorAggregate;
-using App.Core.ProjectAggregate;
+using App.Core.Entities.ContributorAggregate;
+using App.Core.Entities.ProjectAggregate;
 using App.SharedKernel;
 using App.SharedKernel.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -13,14 +13,14 @@ public class AppDbContext : DbContext
 
   public AppDbContext(DbContextOptions<AppDbContext> options,
     IDomainEventDispatcher? dispatcher)
-      : base(options)
+    : base(options)
   {
     _dispatcher = dispatcher;
   }
 
   public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
   public DbSet<Project> Projects => Set<Project>();
-  public DbSet<Contributor> Contributors => Set<Contributor>(); 
+  public DbSet<Contributor> Contributors => Set<Contributor>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -28,18 +28,21 @@ public class AppDbContext : DbContext
     modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
   }
 
-  public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+  public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
   {
-    int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+    var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
     // ignore events if no dispatcher provided
-    if (_dispatcher == null) return result;
+    if (_dispatcher == null)
+    {
+      return result;
+    }
 
     // dispatch events only if save was successful
     var entitiesWithEvents = ChangeTracker.Entries<EntityBase>()
-        .Select(e => e.Entity)
-        .Where(e => e.DomainEvents.Any())
-        .ToArray();
+      .Select(e => e.Entity)
+      .Where(e => e.DomainEvents.Any())
+      .ToArray();
 
     await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
 

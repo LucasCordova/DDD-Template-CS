@@ -1,6 +1,6 @@
 ﻿using Ardalis.SmartEnum;
 
-namespace App.Core.ProjectAggregate;
+namespace App.Core.Entities.ProjectAggregate;
 
 public class PriorityStatus : SmartEnum<PriorityStatus>
 {
@@ -9,4 +9,3 @@ public class PriorityStatus : SmartEnum<PriorityStatus>
 
   protected PriorityStatus(string name, int value) : base(name, value) { }
 }
-

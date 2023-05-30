@@ -1,5 +1,5 @@
-﻿using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Specifications;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
 using App.Web.ApiModels;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Web.Api;
 
 /// <summary>
-/// A sample API Controller. Consider using API Endpoints (see Endpoints folder) for a more SOLID approach to building APIs
-/// https://github.com/ardalis/ApiEndpoints
+///   A sample API Controller. Consider using API Endpoints (see Endpoints folder) for a more SOLID approach to building
+///   APIs
+///   https://github.com/ardalis/ApiEndpoints
 /// </summary>
 public class ProjectsController : BaseApiController
 {
@@ -24,12 +25,12 @@ public class ProjectsController : BaseApiController
   public async Task<IActionResult> List()
   {
     var projectDTOs = (await _repository.ListAsync())
-        .Select(project => new ProjectDTO
-        (
-            id: project.Id,
-            name: project.Name
-        ))
-        .ToList();
+      .Select(project => new ProjectDTO
+      (
+        project.Id,
+        project.Name
+      ))
+      .ToList();
 
     return Ok(projectDTOs);
   }
@@ -47,12 +48,12 @@ public class ProjectsController : BaseApiController
 
     var result = new ProjectDTO
     (
-        id: project.Id,
-        name: project.Name,
-        items: new List<ToDoItemDTO>
-        (
-            project.Items.Select(i => ToDoItemDTO.FromToDoItem(i)).ToList()
-        )
+      project.Id,
+      project.Name,
+      new List<ToDoItemDTO>
+      (
+        project.Items.Select(i => ToDoItemDTO.FromToDoItem(i)).ToList()
+      )
     );
 
     return Ok(result);
@@ -68,8 +69,8 @@ public class ProjectsController : BaseApiController
 
     var result = new ProjectDTO
     (
-        id: createdProject.Id,
-        name: createdProject.Name
+      createdProject.Id,
+      createdProject.Name
     );
     return Ok(result);
   }
@@ -80,10 +81,16 @@ public class ProjectsController : BaseApiController
   {
     var projectSpec = new ProjectByIdWithItemsSpec(projectId);
     var project = await _repository.FirstOrDefaultAsync(projectSpec);
-    if (project == null) return NotFound("No such project");
+    if (project == null)
+    {
+      return NotFound("No such project");
+    }
 
     var toDoItem = project.Items.FirstOrDefault(item => item.Id == itemId);
-    if (toDoItem == null) return NotFound("No such item.");
+    if (toDoItem == null)
+    {
+      return NotFound("No such item.");
+    }
 
     toDoItem.MarkComplete();
     await _repository.UpdateAsync(project);

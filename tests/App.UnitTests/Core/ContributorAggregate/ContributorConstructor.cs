@@ -1,4 +1,4 @@
-﻿using App.Core.ContributorAggregate;
+﻿using App.Core.Entities.ContributorAggregate;
 using Xunit;
 
 namespace App.UnitTests.Core.ContributorAggregate;

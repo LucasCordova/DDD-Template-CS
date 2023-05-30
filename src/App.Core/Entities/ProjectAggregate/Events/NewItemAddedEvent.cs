@@ -1,16 +1,16 @@
 ﻿using App.SharedKernel;
 
-namespace App.Core.ProjectAggregate.Events;
+namespace App.Core.Entities.ProjectAggregate.Events;
 
 public class NewItemAddedEvent : DomainEventBase
 {
-  public ToDoItem NewItem { get; set; }
-  public Project Project { get; set; }
-
   public NewItemAddedEvent(Project project,
-      ToDoItem newItem)
+    ToDoItem newItem)
   {
     Project = project;
     NewItem = newItem;
   }
+
+  public ToDoItem NewItem { get; set; }
+  public Project Project { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using App.Core.ContributorAggregate;
+﻿using App.Core.Entities.ContributorAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,7 +9,7 @@ public class ContributorConfiguration : IEntityTypeConfiguration<Contributor>
   public void Configure(EntityTypeBuilder<Contributor> builder)
   {
     builder.Property(p => p.Name)
-        .HasMaxLength(100)
-        .IsRequired();
+      .HasMaxLength(100)
+      .IsRequired();
   }
 }

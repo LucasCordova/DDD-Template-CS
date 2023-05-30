@@ -1,17 +1,17 @@
-﻿using Ardalis.GuardClauses;
-using App.SharedKernel;
+﻿using App.SharedKernel;
 using App.SharedKernel.Interfaces;
+using Ardalis.GuardClauses;
 
-namespace App.Core.ContributorAggregate;
+namespace App.Core.Entities.ContributorAggregate;
 
 public class Contributor : EntityBase, IAggregateRoot
 {
-  public string Name { get; private set; }
-
   public Contributor(string name)
   {
     Name = Guard.Against.NullOrEmpty(name, nameof(name));
   }
+
+  public string Name { get; private set; }
 
   public void UpdateName(string newName)
   {

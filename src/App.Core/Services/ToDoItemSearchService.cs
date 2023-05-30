@@ -1,8 +1,8 @@
-﻿using Ardalis.Result;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.Core.Interfaces;
-using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
+using Ardalis.Result;
 
 namespace App.Core.Services;
 
@@ -46,7 +46,7 @@ public class ToDoItemSearchService : IToDoItemSearchService
     catch (Exception ex)
     {
       // TODO: Log details here
-      return Result<List<ToDoItem>>.Error(new[] { ex.Message });
+      return Result<List<ToDoItem>>.Error(ex.Message);
     }
   }
 

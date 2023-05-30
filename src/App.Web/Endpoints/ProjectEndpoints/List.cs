@@ -1,14 +1,12 @@
-﻿using Ardalis.ApiEndpoints;
-using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
 using App.SharedKernel.Interfaces;
+using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace App.Web.Endpoints.ProjectEndpoints;
 
-public class List : EndpointBaseAsync
-    .WithoutRequest
-    .WithActionResult<ProjectListResponse>
+public class List : EndpointBaseAsync.WithoutRequest.WithActionResult<ProjectListResponse>
 {
   private readonly IReadRepository<Project> _repository;
 
@@ -19,10 +17,10 @@ public class List : EndpointBaseAsync
 
   [HttpGet("/Projects")]
   [SwaggerOperation(
-      Summary = "Gets a list of all Projects",
-      Description = "Gets a list of all Projects",
-      OperationId = "Project.List",
-      Tags = new[] { "ProjectEndpoints" })
+    Summary = "Gets a list of all Projects",
+    Description = "Gets a list of all Projects",
+    OperationId = "Project.List",
+    Tags = new[] { "ProjectEndpoints" })
   ]
   public override async Task<ActionResult<ProjectListResponse>> HandleAsync(
     CancellationToken cancellationToken = new())

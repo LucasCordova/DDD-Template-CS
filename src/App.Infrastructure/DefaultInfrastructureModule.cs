@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-using Autofac;
+using App.Core.Entities.ProjectAggregate;
 using App.Core.Interfaces;
-using App.Core.ProjectAggregate;
 using App.Infrastructure.Data;
 using App.SharedKernel;
 using App.SharedKernel.Interfaces;
+using Autofac;
 using MediatR;
 using MediatR.Pipeline;
 using Module = Autofac.Module;
@@ -13,8 +13,8 @@ namespace App.Infrastructure;
 
 public class DefaultInfrastructureModule : Module
 {
-  private readonly bool _isDevelopment = false;
-  private readonly List<Assembly> _assemblies = new List<Assembly>();
+  private readonly List<Assembly> _assemblies = new();
+  private readonly bool _isDevelopment;
 
   public DefaultInfrastructureModule(bool isDevelopment, Assembly? callingAssembly = null)
   {
@@ -78,10 +78,8 @@ public class DefaultInfrastructureModule : Module
 
     var mediatrOpenTypes = new[]
     {
-      typeof(IRequestHandler<,>), 
-      typeof(IRequestExceptionHandler<,,>), 
-      typeof(IRequestExceptionAction<,>),
-      typeof(INotificationHandler<>),
+      typeof(IRequestHandler<,>), typeof(IRequestExceptionHandler<,,>), typeof(IRequestExceptionAction<,>),
+      typeof(INotificationHandler<>)
     };
 
     foreach (var mediatrOpenType in mediatrOpenTypes)

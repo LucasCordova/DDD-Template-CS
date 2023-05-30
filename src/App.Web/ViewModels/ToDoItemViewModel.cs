@@ -1,4 +1,4 @@
-﻿using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
 
 namespace App.Web.ViewModels;
 
@@ -11,12 +11,9 @@ public class ToDoItemViewModel
 
   public static ToDoItemViewModel FromToDoItem(ToDoItem item)
   {
-    return new ToDoItemViewModel()
+    return new ToDoItemViewModel
     {
-      Id = item.Id,
-      Title = item.Title,
-      Description = item.Description,
-      IsDone = item.IsDone
+      Id = item.Id, Title = item.Title, Description = item.Description, IsDone = item.IsDone
     };
   }
 }

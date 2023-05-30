@@ -1,5 +1,5 @@
-﻿using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Specifications;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using Xunit;
 
 namespace App.UnitTests.Core.Specifications;
@@ -14,7 +14,7 @@ public class IncompleteItemsSpecificationConstructor
     var item3 = new ToDoItem();
     item3.MarkComplete();
 
-    var items = new List<ToDoItem>() { item1, item2, item3 };
+    var items = new List<ToDoItem> { item1, item2, item3 };
 
     var spec = new IncompleteItemsSpec();
 

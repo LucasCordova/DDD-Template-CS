@@ -1,19 +1,13 @@
-﻿using Ardalis.GuardClauses;
-using App.Core.ProjectAggregate.Events;
+﻿using App.Core.Entities.ProjectAggregate.Events;
 using App.SharedKernel;
 using App.SharedKernel.Interfaces;
+using Ardalis.GuardClauses;
 
-namespace App.Core.ProjectAggregate;
+namespace App.Core.Entities.ProjectAggregate;
 
 public class Project : EntityBase, IAggregateRoot
 {
-  public string Name { get; private set; }
-
   private readonly List<ToDoItem> _items = new();
-  public IEnumerable<ToDoItem> Items => _items.AsReadOnly();
-  public ProjectStatus Status => _items.All(i => i.IsDone) ? ProjectStatus.Complete : ProjectStatus.InProgress;
-
-  public PriorityStatus Priority { get; }
 
   public Project(string name, PriorityStatus priority)
   {
@@ -21,13 +15,19 @@ public class Project : EntityBase, IAggregateRoot
     Priority = priority;
   }
 
+  public string Name { get; private set; }
+  public IEnumerable<ToDoItem> Items => _items.AsReadOnly();
+  public ProjectStatus Status => _items.All(i => i.IsDone) ? ProjectStatus.Complete : ProjectStatus.InProgress;
+
+  public PriorityStatus Priority { get; }
+
   public void AddItem(ToDoItem newItem)
   {
     Guard.Against.Null(newItem, nameof(newItem));
     _items.Add(newItem);
 
     var newItemAddedEvent = new NewItemAddedEvent(this, newItem);
-    base.RegisterDomainEvent(newItemAddedEvent);
+    RegisterDomainEvent(newItemAddedEvent);
   }
 
   public void UpdateName(string newName)

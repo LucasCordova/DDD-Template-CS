@@ -1,8 +1,8 @@
-﻿using Ardalis.GuardClauses;
-using App.Core.ProjectAggregate.Events;
+﻿using App.Core.Entities.ProjectAggregate.Events;
 using App.SharedKernel;
+using Ardalis.GuardClauses;
 
-namespace App.Core.ProjectAggregate;
+namespace App.Core.Entities.ProjectAggregate;
 
 public class ToDoItem : EntityBase
 {
@@ -27,7 +27,7 @@ public class ToDoItem : EntityBase
     ContributorId = contributorId;
 
     var contributorAddedToItem = new ContributorAddedToItemEvent(this, contributorId);
-    base.RegisterDomainEvent(contributorAddedToItem);
+    RegisterDomainEvent(contributorAddedToItem);
   }
 
   public void RemoveContributor()
@@ -37,7 +37,7 @@ public class ToDoItem : EntityBase
 
   public override string ToString()
   {
-    string status = IsDone ? "Done!" : "Not done.";
+    var status = IsDone ? "Done!" : "Not done.";
     return $"{Id}: Status: {status} - {Title} - {Description}";
   }
 }

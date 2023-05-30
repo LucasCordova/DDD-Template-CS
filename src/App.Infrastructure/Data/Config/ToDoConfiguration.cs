@@ -1,4 +1,4 @@
-﻿using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,8 +9,8 @@ public class ToDoConfiguration : IEntityTypeConfiguration<ToDoItem>
   public void Configure(EntityTypeBuilder<ToDoItem> builder)
   {
     builder.Property(t => t.Title)
-        .IsRequired();
+      .IsRequired();
     builder.Property(t => t.ContributorId)
-        .IsRequired(false);
+      .IsRequired(false);
   }
 }

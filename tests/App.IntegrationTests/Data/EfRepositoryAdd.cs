@@ -1,4 +1,4 @@
-﻿using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
 using Xunit;
 
 namespace App.IntegrationTests.Data;
@@ -16,7 +16,7 @@ public class EfRepositoryAdd : BaseEfRepoTestFixture
     await repository.AddAsync(project);
 
     var newProject = (await repository.ListAsync())
-                    .FirstOrDefault();
+      .FirstOrDefault();
 
     Assert.Equal(testProjectName, newProject?.Name);
     Assert.Equal(testProjectStatus, newProject?.Priority);

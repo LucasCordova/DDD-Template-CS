@@ -1,7 +1,7 @@
-﻿using App.Core.Interfaces;
-using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Events;
-using App.Core.ProjectAggregate.Handlers;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Events;
+using App.Core.Entities.ProjectAggregate.Handlers;
+using App.Core.Interfaces;
 using Moq;
 using Xunit;
 
@@ -9,8 +9,8 @@ namespace App.UnitTests.Core.Handlers;
 
 public class ItemCompletedEmailNotificationHandlerHandle
 {
-  private ItemCompletedEmailNotificationHandler _handler;
-  private Mock<IEmailSender> _emailSenderMock;
+  private readonly Mock<IEmailSender> _emailSenderMock;
+  private readonly ItemCompletedEmailNotificationHandler _handler;
 
   public ItemCompletedEmailNotificationHandlerHandle()
   {
@@ -31,6 +31,8 @@ public class ItemCompletedEmailNotificationHandlerHandle
   {
     await _handler.Handle(new ToDoItemCompletedEvent(new ToDoItem()), CancellationToken.None);
 
-    _emailSenderMock.Verify(sender => sender.SendEmailAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+    _emailSenderMock.Verify(
+      sender => sender.SendEmailAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()),
+      Times.Once);
   }
 }

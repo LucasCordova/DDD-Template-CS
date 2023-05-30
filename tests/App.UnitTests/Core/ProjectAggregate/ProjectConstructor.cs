@@ -1,12 +1,12 @@
-﻿using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
 using Xunit;
 
 namespace App.UnitTests.Core.ProjectAggregate;
 
 public class ProjectConstructor
 {
-  private string _testName = "test name";
-  private PriorityStatus _testPriority = PriorityStatus.Backlog;
+  private readonly string _testName = "test name";
+  private readonly PriorityStatus _testPriority = PriorityStatus.Backlog;
   private Project? _testProject;
 
   private Project CreateProject()

@@ -1,14 +1,12 @@
-﻿using Ardalis.ApiEndpoints;
-using App.Core.ProjectAggregate;
+﻿using App.Core.Entities.ProjectAggregate;
 using App.SharedKernel.Interfaces;
+using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace App.Web.Endpoints.ProjectEndpoints;
 
-public class Create : EndpointBaseAsync
-  .WithRequest<CreateProjectRequest>
-  .WithActionResult<CreateProjectResponse>
+public class Create : EndpointBaseAsync.WithRequest<CreateProjectRequest>.WithActionResult<CreateProjectResponse>
 {
   private readonly IRepository<Project> _repository;
 
@@ -37,8 +35,8 @@ public class Create : EndpointBaseAsync
     var createdItem = await _repository.AddAsync(newProject, cancellationToken);
     var response = new CreateProjectResponse
     (
-      id: createdItem.Id,
-      name: createdItem.Name
+      createdItem.Id,
+      createdItem.Name
     );
 
     return Ok(response);

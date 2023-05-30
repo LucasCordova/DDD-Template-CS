@@ -1,13 +1,13 @@
 ﻿using App.SharedKernel;
 
-namespace App.Core.ProjectAggregate.Events;
+namespace App.Core.Entities.ProjectAggregate.Events;
 
 public class ToDoItemCompletedEvent : DomainEventBase
 {
-  public ToDoItem CompletedItem { get; set; }
-
   public ToDoItemCompletedEvent(ToDoItem completedItem)
   {
     CompletedItem = completedItem;
   }
+
+  public ToDoItem CompletedItem { get; set; }
 }

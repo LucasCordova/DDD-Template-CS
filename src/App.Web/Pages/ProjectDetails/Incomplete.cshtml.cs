@@ -1,5 +1,5 @@
-﻿using App.Core.ProjectAggregate;
-using App.Core.ProjectAggregate.Specifications;
+﻿using App.Core.Entities.ProjectAggregate;
+using App.Core.Entities.ProjectAggregate.Specifications;
 using App.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,15 +10,14 @@ public class IncompleteModel : PageModel
 {
   private readonly IRepository<Project> _repository;
 
-  [BindProperty(SupportsGet = true)]
-  public int ProjectId { get; set; }
-
-  public List<ToDoItem>? ToDoItems { get; set; }
-
   public IncompleteModel(IRepository<Project> repository)
   {
     _repository = repository;
   }
+
+  [BindProperty(SupportsGet = true)] public int ProjectId { get; set; }
+
+  public List<ToDoItem>? ToDoItems { get; set; }
 
   public async Task OnGetAsync()
   {

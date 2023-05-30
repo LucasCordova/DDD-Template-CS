@@ -1,15 +1,15 @@
 ﻿using App.SharedKernel;
 
-namespace App.Core.ProjectAggregate.Events;
+namespace App.Core.Entities.ProjectAggregate.Events;
 
 public class ContributorAddedToItemEvent : DomainEventBase
 {
-  public int ContributorId { get; set; }
-  public ToDoItem Item { get; set; }
-
   public ContributorAddedToItemEvent(ToDoItem item, int contributorId)
   {
     Item = item;
     ContributorId = contributorId;
   }
+
+  public int ContributorId { get; set; }
+  public ToDoItem Item { get; set; }
 }
